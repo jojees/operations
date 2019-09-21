@@ -3,6 +3,7 @@ branches:
   only:
   - master
 skip_tags: true
+image: Ubuntu
 shallow_clone: true
 build:
   verbosity: minimal
@@ -12,5 +13,5 @@ only_commits:
 services:
 - docker
 test_script:
-- cd docker
-- docker build -t .
+- cd docker/alpine
+- docker build -t jojees/alpine:3.10.2 .

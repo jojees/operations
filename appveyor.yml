@@ -7,8 +7,6 @@ branches:
 environment:
   matrix:
   - TOXENV: py27
-  - TOXENV: py35
-  - TOXENV: py36
   - TOXENV: py37
 skip_tags: true
 skip_commits:
@@ -20,6 +18,7 @@ init:
 - cmd: echo "Initializing"
 install:
 - cmd: echo "Installing"
+- cmd: pip install tox
 build_script:
 - cmd: echo "Performing build."
 before_test:
