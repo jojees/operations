@@ -1,0 +1,32 @@
+version: 1.0.{build}
+pull_requests:
+  do_not_increment_build_number: true
+branches:
+  only:
+  - master
+environment:
+  matrix:
+  - TOXENV: py27
+  - TOXENV: py35
+  - TOXENV: py36
+  - TOXENV: py37
+skip_tags: true
+skip_commits:
+  files:
+    - docker/*
+image: Ubuntu1804
+shallow_clone: true
+init:
+- cmd: echo "Initializing"
+install:
+- cmd: echo "Installing"
+build_script:
+- cmd: echo "Performing build."
+before_test:
+- cmd: echo "Before test"
+after_test:
+- cmd: echo "After test"
+deploy_script:
+- cmd: echo "Performing deployment."
+test_script:
+- tox
