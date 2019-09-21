@@ -27,5 +27,7 @@ after_test:
 - cmd: echo "After test"
 deploy_script:
 - cmd: echo "Performing deployment."
-test_script:
-- tox
+#
+#test_script:
+#- tox
+#
