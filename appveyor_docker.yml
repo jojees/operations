@@ -10,8 +10,10 @@ build:
 only_commits:
   files:
     - docker/
+skip_commits:
+  files:
+    - docker/**/.dockerignore
 services:
 - docker
 test_script:
-- cd docker/alpine
-- docker build -t jojees/alpine:3.10.2 .
+- make docker

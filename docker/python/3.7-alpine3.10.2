@@ -1,0 +1,12 @@
+FROM alpine:3.10.2
+LABEL version="1.0" \
+      description="Python3.7 base image used across various projects."
+RUN apk add --no-cache --update \
+      python3 && \
+      if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi && \
+      python3 -m ensurepip && \
+      rm -r /usr/lib/python*/ensurepip && \
+      pip3 install --no-cache --upgrade pip setuptools wheel pre-commit && \
+      if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
+      rm -rf /var/cache/apk/*
+ENTRYPOINT [ "python" ]

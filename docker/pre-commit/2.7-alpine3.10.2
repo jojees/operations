@@ -1,0 +1,18 @@
+FROM alpine:3.10.2
+LABEL version="1.0" \
+      description="Pre-Commit based on Python 2.7."
+ADD .pre-commit-config.yaml /tmp/pre-commit-config.yaml
+RUN apk add --update \
+      python \
+      python-dev \
+      py-pip \
+      g++ git && \
+      pip install pre-commit && \
+      apk del g++ py-pip  python-dev && \
+      rm -rf /var/cache/apk/* && \
+      /usr/bin/git config --global init.templateDir ~/.git-template && \
+      pre-commit init-templatedir ~/.git-template && \
+      mkdir /tmp/temp && cd /tmp/temp && /usr/bin/git init && \
+      cp /tmp/pre-commit-config.yaml /tmp/temp/.pre-commit-config.yaml && \
+      pre-commit
+ENTRYPOINT [ "python" ]
