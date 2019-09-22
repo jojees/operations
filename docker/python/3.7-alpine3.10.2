@@ -10,4 +10,3 @@ RUN apk add --no-cache --update \
       if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
       rm -rf /var/cache/apk/*
 ENTRYPOINT [ "python" ]
-

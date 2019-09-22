@@ -1,1 +1,5 @@
-docker/*/* linguist-language=Dockerfile
+$ cat .gitattributes
+*.2 linguist-language=Dockerfile
+ubuntu14 linguist-language=Dockerfile
+ubuntu16 linguist-language=Dockerfile
+ubuntu18 linguist-language=Dockerfile
