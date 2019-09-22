@@ -13,3 +13,4 @@ Code quality, build quality & tests are performed using multiple build tools. Fo
 
 Overal Build Check: *AppVeyor*    [![Operations Build Status](https://ci.appveyor.com/api/projects/status/28ty1a7rwdsyq7ve/branch/master?svg=true)](https://ci.appveyor.com/project/jojees/operations/branch/master)<br />
 Docker Containers:&nbsp; *https://hub.docker.com/u/jojees*&nbsp;&nbsp; [![Operations Build Status](https://ci.appveyor.com/api/projects/status/qsvt44pionetf5i6/branch/master?svg=true)](hhttps://ci.appveyor.com/api/projects/status/qsvt44pionetf5i6/branch/master)
+
