@@ -107,3 +107,6 @@ venv.bak/
 .DS_Store
 .env_make
 .*.swp
+
+# Vagrant specifc files and folders
+.vagrant/
