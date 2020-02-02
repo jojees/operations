@@ -1,0 +1,32 @@
+version: "3.7"
+services:
+
+  saltserver:
+    build:
+        context: ../docker/saltserver
+        dockerfile: xenial-2016.3
+    image: jojees/saltserver:xenial-2016.3
+    networks:
+      - saltstack
+    tty: true
+    hostname: saltmaster
+    working_dir: /opt/salt
+    expose:
+      - 4505
+      - 4506
+    stdin_open: true
+    privileged: true
+
+  ubuntuminion:
+    build:
+        context: ../docker/saltclient
+        dockerfile: xenial-2016.3
+    image: jojees/saltminion:xenial-2016.3
+    depends_on:
+      - saltserver
+    networks:
+      - saltstack
+    tty: true
+
+networks:
+  saltstack:
