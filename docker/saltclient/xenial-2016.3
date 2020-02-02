@@ -1,0 +1,17 @@
+FROM ubuntu:16.04
+MAINTAINER Jojees <joji@jojees.net>
+RUN echo 'deb http://repo.saltstack.com/apt/ubuntu/16.04/amd64/2016.3 xenial main' > /etc/apt/sources.list.d/saltstack.list \
+    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0E08A149DE57BFBE \
+    && apt-get update && apt-get install -y salt-minion virt-what && echo "master: saltserver" > /etc/salt/minion \
+    && /bin/bash -c 'source /etc/lsb-release; echo "id: $DISTRIB_ID-$DISTRIB_RELEASE-$(hostname)" >> /etc/salt/minion' \
+    && echo "log_level: warning" >> /etc/salt/minion \
+    && echo "master_tries: -1" >> /etc/salt/minion \
+    && echo "rejected_retry: True" >> /etc/salt/minion \
+    && echo "acceptance_wait_time: 1" >> /etc/salt/minion \
+    && echo "log_level: warning" >> /etc/salt/minion \
+    && echo "log_level_logfile: warning" >> /etc/salt/minion \
+    && echo "auth_timeout: 5" >> /etc/salt/minion \
+    && echo "auth_tries: 10" >> /etc/salt/minion \
+    && echo "recon_randomize: False" >> /etc/salt/minion \
+    && touch /var/log/salt/minion && mkdir -p /etc/salt/pki/minion
+CMD tail -f /var/log/salt/minion

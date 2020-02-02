@@ -1,0 +1,13 @@
+FROM ubuntu:16.04
+MAINTAINER Jojees <joji@jojees.net>
+RUN echo 'deb http://repo.saltstack.com/apt/ubuntu/16.04/amd64/2016.3 xenial main' > /etc/apt/sources.list.d/saltstack.list \
+    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0E08A149DE57BFBE \
+    && apt-get update && apt-get install -y salt-master vim virt-what\
+    && sed -i 's|#auto_accept: False|auto_accept: True|' /etc/salt/master \
+    && sed -i 's|#hash_type: md5|hash_type: sha256|' /etc/salt/master \
+    && sed -i 's|#worker_threads: 5|worker_threads: 15|' /etc/salt/master\
+    && sed -i 's|#log_level: warning|log_level: warning|' /etc/salt/master \
+    && echo 'enable_gpu_grains: False' >> /etc/salt/master \
+    && echo 'saltserver' > /etc/salt/minion
+CMD service salt-master start && tail -f /var/log/salt/master
+#CMD /usr/bin/salt-master --log-level=warning

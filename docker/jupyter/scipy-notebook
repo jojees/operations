@@ -1,0 +1,9 @@
+FROM jupyter/scipy-notebook
+
+USER root
+
+RUN pip install -U mlxtend pydotplus graphviz
+RUN apt-get update && apt-get -y install graphviz libgraphviz-dev pkg-config
+#RUN pip install -U mlxtend xgboost pydotplus
+
+USER jovyan

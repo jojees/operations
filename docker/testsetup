@@ -1,0 +1,4 @@
+FROM ubuntu:16.04
+LABEL version="1.0" \
+      description="Ubuntu 16.04 base image used across various projects."
+CMD tailf /var/log/alternatives.log

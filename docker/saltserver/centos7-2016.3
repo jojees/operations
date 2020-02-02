@@ -1,0 +1,16 @@
+FROM centos:7
+MAINTAINER joji@jojees.net
+
+RUN yum install -y --nogpgcheck epel-release && \
+    yum install -y --nogpgcheck https://repo.saltstack.com/yum/redhat/salt-repo-2016.3-2.el7.noarch.rpm && \
+    yum update -y && \
+    yum install -y virt-what salt-master && \
+    yum clean all && \
+    rm -rf /var/cache/yum && \
+    sed -i "s|#auto_accept: False|auto_accept: True|g" /etc/salt/master && \
+    sed -i 's|#hash_type: md5|hash_type: sha256|' /etc/salt/master && \
+    sed -i 's|#worker_threads: 5|worker_threads: 10|' /etc/salt/master && \
+    sed -i 's|#log_level: warning|log_level: info|' /etc/salt/master && \
+    echo 'saltserver' > /etc/salt/minion
+
+ENTRYPOINT ["salt-master", "-l", "debug"]

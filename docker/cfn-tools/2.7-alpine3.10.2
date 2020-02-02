@@ -1,0 +1,12 @@
+FROM alpine:3.10.2
+LABEL version="1.0" \
+      description="Cfn-Flip based on Python 2.7."
+RUN apk add --update \
+      python \
+      python-dev \
+      py-pip \
+      g++ git && \
+      pip install cfn-flip && \
+      apk del g++ py-pip  python-dev && \
+      rm -rf /var/cache/apk/*
+ENTRYPOINT [ "python" ]

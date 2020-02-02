@@ -18,7 +18,7 @@ default:
 #################################
 # Docker targets
 #################################
-.PHONY: clean-image image image-test docker
+.PHONY: clean-image image image-test docker docker-push
 clean-image:
 	@echo "+ $@"
 	@docker rmi ${HUB_NAMESPACE}/${TARGET_DIR}:${DOCKERFILE}  || true
@@ -28,12 +28,20 @@ image-build: clean-image
 	@docker build -t ${HUB_NAMESPACE}/${TARGET_DIR}:${DOCKERFILE} -f ./${TARGET_DIR}/${DOCKERFILE} ${TARGET_DIR}
 	@docker images --format '{{.Repository}}:{{.Tag}}\t\t Built: {{.CreatedSince}}\t\tSize: {{.Size}}' | grep ${TARGET_DIR}:${DOCKERFILE}
 
-image-push:
+docker-push:
 	@echo "+ $@"
+	@chmod +x docker/builder.sh
+	@./docker/builder.sh -pd
+	@chmod -x docker/builder.sh
 
 docker:
 	@chmod +x $@/builder.sh
 	@./$@/builder.sh
+	@chmod -x $@/builder.sh
+
+hub-push:
+	@echo "+ $@"
+	@docker push ${HUB_NAMESPACE}/${TARGET_DIR}:${DOCKERFILE}  || true
 
 #################################
 # Utilities
