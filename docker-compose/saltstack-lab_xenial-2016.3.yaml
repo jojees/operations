@@ -10,12 +10,14 @@ services:
       - saltstack
     tty: true
     hostname: saltmaster
-    working_dir: /opt/salt
+    working_dir: /opt
     expose:
       - 4505
       - 4506
     stdin_open: true
     privileged: true
+    volumes:
+      - ../cm_tools/saltstack/2016.3:/opt/salt
 
   ubuntuminion:
     build:

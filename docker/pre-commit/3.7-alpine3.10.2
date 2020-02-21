@@ -14,5 +14,6 @@ RUN apk add --no-cache --update \
       pre-commit init-templatedir ~/.git-template && \
       mkdir /tmp/temp && cd /tmp/temp && /usr/bin/git init && \
       cp /tmp/pre-commit-config.yaml /tmp/temp/.pre-commit-config.yaml && \
+      apk add python3-dev && apk add build-base && \
       pre-commit
 ENTRYPOINT [ "python" ]
