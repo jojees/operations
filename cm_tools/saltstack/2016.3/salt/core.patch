@@ -1,0 +1,20 @@
+--- core.py	2020-02-05 14:57:11.493162788 +0000
++++ core_new	2020-02-05 15:02:48.944162788 +0000
+@@ -1221,8 +1221,6 @@
+             if os.path.exists('/proc/1/cmdline'):
+                 with salt.utils.fopen('/proc/1/cmdline') as fhr:
+                     init_cmdline = fhr.read().replace('\x00', ' ').split()
+-                    if init_cmdline[0].startswith('/bin/bash'):
+-                        init_cmdline[0] = '/lib/systemd/systemd'
+                     init_bin = salt.utils.which(init_cmdline[0])
+                     if init_bin is not None and init_bin.endswith('bin/init'):
+                         supported_inits = (six.b('upstart'), six.b('sysvinit'), six.b('systemd'))
+@@ -1255,6 +1253,8 @@
+                             )
+                     elif salt.utils.which('supervisord') in init_cmdline:
+                         grains['init'] = 'supervisord'
++                    elif init_cmdline[0].startswith('/bin/bash'):
++                        grains['init'] = 'docker'
+                     else:
+                         log.info(
+                             'Could not determine init system from command line: ({0})'
