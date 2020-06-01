@@ -1,0 +1,18 @@
+FROM ubuntu:18.04
+RUN apt update && apt install software-properties-common -y \
+    && add-apt-repository -y ppa:deadsnakes/ppa \
+    && apt install -y python3.7
+RUN apt install -y git
+ADD .pre-commit-config.yaml /tmp/pre-commit-config.yaml
+RUN apt install -y python3-pip && \
+    pip3 install --no-cache --upgrade pip setuptools wheel pre-commit
+RUN /usr/bin/git config --global init.templateDir ~/.git-template && \
+    pre-commit init-templatedir ~/.git-template && \
+    mkdir /tmp/temp && cd /tmp/temp && /usr/bin/git init && \
+    cp /tmp/pre-commit-config.yaml /tmp/temp/.pre-commit-config.yaml && \
+    pre-commit
+    
+RUN pip3 install cfn-flip
+ENV LC_ALL C.UTF-8
+ENV LANG C.UTF-8
+WORKDIR /opt/ops-iac-repo
