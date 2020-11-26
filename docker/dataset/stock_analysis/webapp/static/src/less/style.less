@@ -1,0 +1,49 @@
+@import 'variables.less';
+@import 'nav.less';
+
+body,
+html {
+  font-family: @body-font;
+  margin: 0;
+  padding: 0;
+  background: #f0f0f0;
+  height: 100%;
+  color: #5f6988;
+
+  .container {
+    margin: 0 auto;
+    height: inherit;
+    background: white;
+    padding: 10px 10px;
+    box-shadow: 0 0 5px rgba(65, 67, 144, 0.15);
+    @media (max-width: 800px) {
+      width: 82%;
+      margin: 0 auto 20px;
+      padding: 30px 6%;
+    }
+
+    h1 {
+      line-height: 1;
+      margin: 0 0 5px;
+    }
+
+    h2 {
+      margin: 0;
+      font-weight: 400;
+      font-size: 1.2em;
+      line-height: 1;
+    }
+
+    a {
+      color: #5dbad7;
+      transition: @transition;
+      text-decoration: none;
+
+      &:hover {
+        cursor: pointer;
+        opacity: .7;
+      }
+    }
+  }
+}
+

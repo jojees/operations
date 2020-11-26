@@ -1,0 +1,10 @@
+Welcome to CandleStick Scanner
+
+<form>
+    <select name="pattern">
+        {% for pattern in patterns %}
+            <option value="{{ pattern }}">{{ patterns[pattern] }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="list" />
+</form>
