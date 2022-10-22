@@ -1,0 +1,31 @@
+version: "3.7"
+services:
+
+  master:
+    build:
+        context: ../docker/ansible
+        dockerfile: master.dockerfile
+    image: jojees/ansible_master:latest
+    networks:
+      - ansible
+    tty: true
+    hostname: ansibemaster
+    working_dir: /opt
+    stdin_open: true
+    privileged: true
+    volumes:
+      - .:/opt
+
+  ubuntu:
+    build:
+        context: ../docker/ansible
+        dockerfile: ubuntu.dockerfile
+    image: jojees/ubuntu_ansible_node:latest
+    depends_on:
+      - master
+    networks:
+      - ansible
+    tty: true
+
+networks:
+  ansible:

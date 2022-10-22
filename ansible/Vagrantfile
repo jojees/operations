@@ -1,0 +1,17 @@
+Vagrant.configure("2") do |config|
+  config.vm.provider "docker" do |d|
+    d.build_dir = "../docker/ubuntu"
+    d.dockerfile = "ubuntu1804.dockerfile"
+    d.name = "ansible-master"
+  end
+  config.vm.provider "docker" do |e|
+    e.build_dir = "../docker/ubuntu"
+    e.dockerfile = "ubuntu1804.dockerfile"
+    e.name = "ubuntu"
+  end
+  config.vm.provider "docker" do |w|
+    w.build_dir = "../docker/centos"
+    w.dockerfile = "centos8.dockerfile"
+    w.name = "centosnode"
+  end
+end

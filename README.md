@@ -3,7 +3,6 @@ This is a collection of tools and utilities used by me for day-to-day operations
 
 [![Operations Build Status](https://ci.appveyor.com/api/projects/status/28ty1a7rwdsyq7ve/branch/master?svg=true)](https://ci.appveyor.com/project/jojees/operations/branch/master)
 ![GitHub](https://img.shields.io/github/license/jojees/operations?color=blue&style=plastic)
-[![HitCount](http://hits.dwyl.io/jojees/jojees/operations.svg)](http://hits.dwyl.io/jojees/jojees/operations)
 
 ## Motivation
 Most of we as DevOps engineer end up rewriting the same code, scripts, templates, configs, etc., again and again for various projects, organizations and friends. This project here is mainly to consolidate all those efforts into a reusable repository, which can reused when need arises.

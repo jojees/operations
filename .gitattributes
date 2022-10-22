@@ -5,3 +5,4 @@ $ cat .gitattributes
 ubuntu14 linguist-language=Dockerfile
 ubuntu16 linguist-language=Dockerfile
 ubuntu18 linguist-language=Dockerfile
+*.dockerfile linguist-language=Dockerfile
